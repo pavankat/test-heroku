@@ -1,0 +1,136 @@
+<!doctype html>
+<html>
+<head>
+    <title>Flicker AJAX Example</title>
+    <style type="text/css">
+        #search-form {
+            margin-bottom: 30px;
+        }
+        .image-item {
+            float: left;
+            padding: 5px;
+        }
+        #images {
+            width: 70%;
+        }
+        img:hover {
+            cursor: pointer;
+        }
+        #citations {
+            position: fixed;
+            top: 0;
+            right: 0;
+            width: 30%;
+            padding-right: 20px;
+            word-break: break-all;
+        }
+        .citation {
+            display: none;
+            max-width: 240px;
+            word-break: break-all;
+        }
+    </style>
+</head>
+<body>
+    
+    <h1>Flicker Search</h1>
+    <div id="search-form">
+        <label>Search</label>
+        <input type="text" id="searchbox">
+        <input type="submit" id="submit">
+    </div>
+    <div id="images">
+        <div id="results">
+
+        </div>
+    </div>
+    <div id="citations">
+        
+    </div>
+
+<!-- https://www.flickr.com/services/api/response.json.html -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+<script type="text/javascript">
+
+    
+
+    $.getJSON("https://api.flickr.com/services/rest/?",
+       {
+           method          : "flickr.photos.getInfo",
+           api_key         : "043464f63ffa5c5c78c605e87e7dd310",
+           photo_id        : 19205657819
+           
+       }, function(data){
+            console.log(data);
+    });
+
+    // Start putting together the HTML string
+    // var htmlString = "";
+
+    // function doThis(data){
+        
+    //     // Now start cycling through our array of Flickr photo details
+    //     $.each(data.photos.photo, function(i,item){
+    //         $.getJSON("https://api.flickr.com/services/rest/?",
+    //            {
+    //                format          : "json",
+    //                method          : "flickr.photos.getInfo",
+    //                api_key         : "043464f63ffa5c5c78c605e87e7dd310",
+    //                photo_id        : item.id
+                   
+    //            }, function(data){
+    //                 console.log(data);
+    //                 // var vtitle = data.title,
+    //                 //     vauthor = data.author,
+    //                 //     vauthorid = data.author_id,
+    //                 //     vmonth = data.published.substring(6, 7),
+    //                 //     vday = data.published.substring(9, 10),
+    //                 //     vyear = data.published.substring(0, 4),
+    //                 //     vpublishdate = vmonth+ "/"+vday+"/"+vyear
+    //                 //     vlink = data.link,
+    //                 //     vfarm = (data.media.m).replace("_m.jpg", "_b.jpg"),
+    //                 //     vfarm2 = (data.media.m).replace("_m.jpg", "_q.jpg"),
+    //                 //     fixname = vauthor.match(/\(([^)]+)\)/)[1];
+
+    //                 // // Here's where we piece together the HTML
+    //                 // htmlString += '<div class="image-item">';
+    //                 // htmlString += '<img class="image-item" title="' + vtitle + '" src="' + vfarm2  + '" alt="'; htmlString += vtitle + '" />';
+    //                 // htmlString += '<div class="citation"><h2>Citation</h2><h3>Image URL</h3><p>'+ vfarm +'</p><h3>Citation</h3><p>Fig.1. <a href="http://www.flickr.com/people/'+vauthorid+'" target="_blank">'+fixname+'</a> "'+vtitle+'" (Published on '+vpublishdate+') <a href="'+vlink+'"" target="_blank">'+vlink+'</a> (Accessed July 3, 2015)</p></div>';
+    //                 // htmlString += '</div>';
+    //            });
+
+    //     });
+
+            
+    //     // Pop our HTML in the #images DIV
+    //     $('#results').html(htmlString);
+    // }
+
+    // $('#submit').on('click', function(){
+    //     $.getJSON("https://api.flickr.com/services/rest/?",
+    //        {
+    //            tags            : $("#searchbox").val(),
+    //            format          : "json",
+    //            method          : "flickr.photos.search",
+    //            api_key         : "043464f63ffa5c5c78c605e87e7dd310",
+    //            per_page        : 50,
+    //            page            : 1,
+    //            license         : [4,5,6,7], 
+    //            nojsoncallback  : 1
+
+               
+    //            //Add as much parameters as you want
+    //            //Guide : https://www.flickr.com/services/api/flickr.photos.search.html
+               
+    //        }, doThis);
+    // });
+
+    // $(document).on('click','.image-item img', function(){
+    //     var whichImage = $(this),
+    //         citationCopy = whichImage.next('.citation').html(),
+    //         citationDiv = $('#citations').html(citationCopy)
+    // });
+
+</script>
+</body>
+</html>
